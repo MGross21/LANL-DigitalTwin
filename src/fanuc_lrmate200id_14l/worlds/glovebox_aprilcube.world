@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="glovebox_aprilcube_world">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Glovebox walls -->
+    <model name="glovebox">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 1.5 2.0</size>  <!-- Adjusted wall size -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 1.5 2.0</size>  <!-- Adjusted wall size -->
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0 0 1.0 0 0 0</pose>  <!-- Center wall adjusted for height -->
+    </model>
+
+    <!-- Create the remaining three walls at different positions -->
+    <model name="glovebox_wall1">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 1.5 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 1.5 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0.75 0 1.0 0 0 1.57</pose>  <!-- Right wall adjusted -->
+    </model>
+
+    <model name="glovebox_wall2">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 1.5 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 1.5 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>-0.75 0 1.0 0 0 -1.57</pose>  <!-- Left wall adjusted -->
+    </model>
+
+    <model name="glovebox_wall3">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0 0.75 1.0 1.57 0 0</pose>  <!-- Front wall adjusted -->
+    </model>
+
+    <model name="glovebox_wall4">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0 -0.75 1.0 -1.57 0 0</pose>  <!-- Back wall adjusted -->
+    </model>
+
+    <!-- AprilTag cube model -->
+    <model name="april_tag_cube">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>-0.5 0 1</pose>  <!-- Use the parameter for random positioning ${april_tag_pose}-->
+    </model>
+
+    <!-- Improved lighting for better visibility -->
+    <light name="point_light" type="point">
+      <pose>0 0 2.5 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>false</cast_shadows>
+    </light>
+  </world>
+</sdf>

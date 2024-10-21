@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<robot name="fanuc_lrmate200id_14l" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Define Fanuc colors -->
+  <material name="fanuc_yellow">
+    <color rgba="1 0.85 0 1"/>
+  </material>
+
+  <material name="fanuc_gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+
+  <!-- Dummy link to fix KDL issue -->
+  <link name="world"/>
+
+  <!-- Joint connecting dummy link to base_link -->
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Robot base -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.095"/>
+      </geometry>
+      <material name="fanuc_gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.095"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20.0"/>
+      <inertia ixx="0.0208" ixy="0" ixz="0" iyy="0.0208" iyz="0" izz="0.025"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 1 -->
+  <joint name="joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.330" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="4.62"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="0.3 0.3 0.2"/>
+      </geometry>
+      <material name="fanuc_yellow"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.3 0.3 0.2"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="10.0"/>
+      <inertia ixx="0.03" ixy="0" ixz="0" iyy="0.03" iyz="0" izz="0.015"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 2 -->
+  <joint name="joint_2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="100" velocity="3.49"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.3"/>
+      </geometry>
+      <material name="fanuc_yellow"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.1 0.3"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="8.0"/>
+      <inertia ixx="0.025" ixy="0" ixz="0" iyy="0.04" iyz="0" izz="0.04"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 3 -->
+  <joint name="joint_3" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0 0 0.45" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="2.79" effort="100" velocity="3.83"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <link name="link3">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.3"/>
+      </geometry>
+      <material name="fanuc_yellow"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.1 0.3"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="6.5"/>
+      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.035" iyz="0" izz="0.035"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 4 -->
+  <joint name="joint_4" type="revolute">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="0 0 0.4" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.79" upper="2.79" effort="80" velocity="4.89"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <link name="link4">
+    <visual>
+      <geometry>
+        <box size="0.15 0.1 0.3"/>
+      </geometry>
+      <material name="fanuc_yellow"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.15 0.1 0.3"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.015" ixy="0" ixz="0" iyy="0.03" iyz="0" izz="0.03"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 5 -->
+  <joint name="joint_5" type="revolute">
+    <parent link="link4"/>
+    <child link="link5"/>
+    <origin xyz="0 0 0.25" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.79" upper="2.79" effort="60" velocity="4.62"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <link name="link5">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.25"/>
+      </geometry>
+      <material name="fanuc_yellow"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.25"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="4.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.02" iyz="0" izz="0.02"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 6 -->
+  <joint name="joint_6" type="revolute">
+    <parent link="link5"/>
+    <child link="tool"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-6.28" upper="6.28" effort="50" velocity="6.28"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <link name="tool">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+      <material name="fanuc_gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/>
+    </inertial>
+  </link>
+
+  <!-- Gazebo-specific elements -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/fanuc_lrmate200id_14l</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- Specify DART as the physics engine -->
+  <gazebo>
+    <physics type="dart">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+  </gazebo>
+</robot>
+
+<!-- Apply Gazebo material properties -->
+  <!-- <gazebo reference="base_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <gazebo reference="link1">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="link2">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="link3">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="link4">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="link5">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="tool">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+</robot> -->
