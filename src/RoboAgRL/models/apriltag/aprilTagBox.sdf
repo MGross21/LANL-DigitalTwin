@@ -1,0 +1,43 @@
+<sdf version="1.6">
+  <model name="apriltag">
+    <pose>0 0 0 0 0 0</pose> <!-- Initial position and orientation (x, y, z, roll, pitch, yaw) -->
+
+    <link name="apriltag_link">
+      <collision name="apriltag_collision">
+        <geometry>
+          <box>
+            <size>0.0635 0.0635 0.0635</size> <!-- Size of the tag in meters (2.5 in x 2.5 in x 2.5 in) -->
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="apriltag_visual">
+        <geometry>
+          <box>
+            <size>0.0635 0.0635 0.0635</size>
+          </box>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <texture>
+            <uri>model://RoboAgRL/imgs/tag36_11_00000.png</uri> <!-- Path to the PNG image -->
+          </texture>
+        </material>
+      </visual>
+
+      <inertial>
+        <mass>0.1</mass> <!-- Mass of the cube in kg -->
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <static>false</static> <!-- Set to false to allow the cube to be dynamic and affected by physics -->
+  </model>
+</sdf>

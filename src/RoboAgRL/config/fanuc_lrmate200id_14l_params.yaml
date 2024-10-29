@@ -1,0 +1,57 @@
+camera:
+  ros__parameters:
+    frame_id: "camera_link"
+    update_rate: 30.0
+    width: 640
+    height: 480
+    fov: 1.047
+    near_clip: 0.1
+    far_clip: 10.0
+    distortion_k1: 0.0
+    distortion_k2: 0.0
+    distortion_k3: 0.0
+    distortion_p1: 0.0
+    distortion_p2: 0.0
+    depth_camera:
+      enabled: true
+      min_depth: 0.1
+      max_depth: 5.0
+
+fanuc_lrmate200id_14l:
+  ros__parameters:
+    base_frame: "base_link"
+    tool_frame: "tool0"
+    joint_limits:
+      joint_1:
+        min: -2.965
+        max: 2.965
+      joint_2:
+        min: -1.745
+        max: 2.530
+      joint_3:
+        min: -2.450
+        max: 4.886
+      joint_4:
+        min: -3.315
+        max: 3.315
+      joint_5:
+        min: -2.617
+        max: 2.617
+      joint_6:
+        min: -6.285
+        max: 6.285
+    max_velocity: 1.0
+    max_acceleration: 2.0
+
+gazebo:
+  ros__parameters:
+    use_sim_time: true
+    physics_engine: "ode"
+    max_step_size: 0.001
+    real_time_factor: 1.0
+    real_time_update_rate: 1000.0
+
+/**:
+  ros__parameters:
+    use_sim_time: true
+    robot_description_file: "package://RoboAgRL/urdf/fanuc_lrmate200id_14l.urdf"

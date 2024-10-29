@@ -1,0 +1,134 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="glovebox_aprilcube_world">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://aprilTagBox</uri>
+    </include>
+
+    <!-- Glovebox walls -->
+    <model name="glovebox_wall_front">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0 0.75 1.0 0 0 0</pose> <!-- Front wall -->
+    </model>
+
+    <model name="glovebox_wall_back">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0 -0.75 1.0 0 0 0</pose> <!-- Back wall -->
+    </model>
+
+    <model name="glovebox_wall_left">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>-0.75 0 1.0 0 0 1.57</pose> <!-- Left wall -->
+    </model>
+
+    <model name="glovebox_wall_right">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 0.3</ambient>
+            <diffuse>0.1 0.1 0.1 0.3</diffuse>
+            <specular>0.1 0.1 0.1 0.3</specular>
+            <emissive>0 0 0 0.3</emissive>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.02 2.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <pose>0.75 0 1.0 0 0 1.57</pose> <!-- Right wall -->
+    </model>
+
+    <!-- Lighting for better visibility -->
+    <light name="point_light" type="point">
+      <pose>0 0 2.5 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>false</cast_shadows>
+    </light>
+  </world>
+</sdf>

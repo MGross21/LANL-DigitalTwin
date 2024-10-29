@@ -16,5 +16,5 @@ log/
 *.env
 
 # Ignore other files
-src/test_robot/
+test_robot/
 
