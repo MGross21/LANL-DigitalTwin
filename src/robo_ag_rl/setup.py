@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 from glob import glob
 
-package_name = 'RoboAgRL'
+package_name = 'robo_ag_rl'
 
 setup(
     name=package_name,
@@ -26,13 +26,13 @@ setup(
     zip_safe=True,
     maintainer='Michael Gross',
     maintainer_email='mhgross2@asu.edu',
-    description='ROS2 package for Agnostic robotic system',
+    description='ROS2 package for Agnostic Robotic System',
     license='BSD-3-Clause',  # Update this to match your actual license
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'robopos = RoboAgRL.robopos_node:main'
-            'set_joint_state = RoboAgRL.set_joint_states:main',  # Adjusted to be in the scripts folder
+            f'robopos = {package_name}.robopos_node:main'
+            f'set_joint_state = {package_name}.set_joint_states:main',  # Adjusted to be in the scripts folder
         ],
     },
 )

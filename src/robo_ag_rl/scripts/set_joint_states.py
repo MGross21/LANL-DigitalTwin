@@ -15,11 +15,11 @@ class JointStatePublisher(Node):
         ]
         joint_state_msg.position = [
             0.0,  # Joint 1 position
-            -0.5,  # Joint 2 position
-            0.25,  # Joint 3 position
-            1.0,  # Joint 4 position
-            -0.75,  # Joint 5 position
-            0.5   # Joint 6 position
+            0.0,  # Joint 2 position
+            0.0,  # Joint 3 position
+            0.0,  # Joint 4 position
+            0.0,  # Joint 5 position
+            0.0   # Joint 6 position
         ]
 
         joint_state_msg.header.stamp = self.get_clock().now().to_msg()

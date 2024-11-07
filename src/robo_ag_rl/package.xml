@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>RoboAgRL</name>
+  <name>robo_ag_rl</name>
   <version>0.0.1</version>
   <description>A barebones Robot Agnostic Reinforcement Learning Model for Gazebo.</description>
 
@@ -9,7 +9,7 @@
   <license>BSD-3-Clause</license>
 
   <url type="repository">https://github.com/MGross21/Digital-Twin-LANL</url>
-  <author email="author@example.com">Author Name</author>
+  <author email="mhgross2@asu.edu">Michael Gross </author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

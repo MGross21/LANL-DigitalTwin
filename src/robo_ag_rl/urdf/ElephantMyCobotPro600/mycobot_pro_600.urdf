@@ -4,7 +4,7 @@
 <xacro:property name="width" value=".2" />
 
 
-  <link name="base">
+  <link name="base_link">
     <visual>
       <geometry>
 	     <!--- 0.0 0 -0.04  1.5708 3.14159-->
@@ -133,7 +133,7 @@
     <joint name="joint2_to_joint1" type="revolute">
     <axis xyz="0 0 1"/>
     <limit effort = "1000.0" lower = "-3.14" upper = "3.14159" velocity = "0"/>
-    <parent link="base"/>
+    <parent link="base_link"/>
     <child link="link1"/>
     <origin xyz= "0 0 0.19934" rpy = "0 0 0"/>  
   </joint>

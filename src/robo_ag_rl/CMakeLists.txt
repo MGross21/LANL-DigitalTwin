@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
-project(RoboAgRL)
+project(robo_ag_rl)
 
-# Specify the C++ standard (remove if not using C++)
+# Specify the C++ standard
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -33,29 +33,25 @@ include_directories(include)
 #   DESTINATION lib/${PROJECT_NAME}
 # )
 
-# Install files
+# Install directories and files
 install(DIRECTORY
   launch
   worlds
   urdf
   config
+  models
+  scripts
+  include/
   DESTINATION share/${PROJECT_NAME}
 )
 
-# if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/config")
+# Install include directory if it exists (you can keep this if you want)
+# if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 #   install(DIRECTORY
-#     config
-#     DESTINATION share/${PROJECT_NAME}/
+#     include/
+#     DESTINATION include
 #   )
 # endif()
-
-# Install include directory if it exists
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/include)
-  install(DIRECTORY
-    include/
-    DESTINATION include
-  )
-endif()
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

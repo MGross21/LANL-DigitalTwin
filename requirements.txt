@@ -1,0 +1,13 @@
+numpy
+opencv-python
+opencv-python-headless
+matplotlib
+scikit-image
+torch
+torchvision
+tensorflow # not used
+gym
+rosdep
+pillow
+pyserial
+apriltag # swap to aruco if causing errors

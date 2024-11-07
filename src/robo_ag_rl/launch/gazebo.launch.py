@@ -3,18 +3,17 @@ from launch import LaunchDescription
 from launch.actions import (
     IncludeLaunchDescription,
     DeclareLaunchArgument,
-    TimerAction,
-    ExecuteProcess,
     SetEnvironmentVariable
 )
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, Command
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
-    # Package directory
-    pkg_share = get_package_share_directory('RoboAgRL')
+    # Define project package
+    project_package = 'robo_ag_rl'
+    pkg_share = get_package_share_directory(project_package)
 
     # Launch Arguments
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -49,7 +48,7 @@ def generate_launch_description():
             'world': world_file,
             'gui': gui,
             'server': server,
-            'verbose': 'true'
+            'use_sim_time': use_sim_time
         }.items()
     )
 
@@ -59,64 +58,66 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[
-            {'robot_description': Command(['xacro ', urdf_file])},
-            {'use_sim_time': use_sim_time},
-        ]
+        parameters=[{'use_sim_time': use_sim_time}],
+        arguments=[urdf_file]
     )
 
-    # Joint State Publisher
-    joint_state_publisher = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='joint_state_publisher',
-        parameters=[{'use_sim_time': use_sim_time, 'initial_joint_states': initial_joint_states}]
+    # Joint State Publisher GUI Node
+    joint_state_publisher_gui = Node(
+        package=project_package, 
+        executable='gui/joint_pos_gui',  # Assuming this is the correct path to the GUI executable
+        name='joint_state_publisher_gui',
+        output='screen',
+        parameters=[{'joint_names': ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']}]
     )
 
-    # Spawn the robot in Gazebo
-    spawn_entity = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=['-entity', 'ElephantMyCobotPro600', 
-                   '-topic', 'robot_description',
-                   '-x', '0', '-y', '0', '-z', '1.5'],
-        output='screen'
-    )
-
-    # RViz Visualization
+    # RViz Node
     rviz = Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
+        output='screen',
         arguments=['-d', rviz_config],
-        parameters=[{'use_sim_time': use_sim_time}],
-        output='screen'
+        parameters=[{'use_sim_time': use_sim_time}]
     )
 
-    # TF Echo for Debugging
-    tf_echo = Node(
-        package='tf2_ros',
-        executable='tf2_echo',
-        name='tf2_echo',
-        arguments=['base', 'tool'],
-        output='screen'
+    # Camera Node
+    camera_node = Node(
+        package=project_package,
+        executable='scripts/camera',  # Adjust if this is not the correct path
+        name='camera_node',
+        output='screen',
+        parameters=[{'use_sim_time': use_sim_time}]
     )
 
-    # Check URDF Process
-    check_urdf = ExecuteProcess(
-        cmd=['check_urdf', urdf_file],
-        output='screen'
+    # AprilTag Detection Node
+    apriltag_node = Node(
+        package=project_package,
+        executable='cv_error_detection',  # Assuming this file handles detection
+        name='apriltag_node',
+        output='screen',
+        parameters=[{'use_sim_time': use_sim_time}]
     )
 
-    # Return the Launch Description
+    # Reinforcement Learning Node
+    rl_node = Node(
+        package=project_package,
+        executable='main',  # Assuming this is the entry point for RL
+        name='reinforcement_learning_node',
+        output='screen',
+        parameters=[{'use_sim_time': use_sim_time}]
+    )
+
+    # Create and return the launch description
     return LaunchDescription(
         launch_arguments + [
             set_gazebo_model_path,
-            check_urdf,
             gazebo,
             robot_state_publisher,
-            joint_state_publisher,
-            TimerAction(period=10.0, actions=[spawn_entity]),
-            TimerAction(period=15.0, actions=[rviz, tf_echo])
+            joint_state_publisher_gui,  # Include the GUI node here
+            rviz,
+            camera_node,        # Add the camera node
+            apriltag_node,     # Add the AprilTag node
+            rl_node   
         ]
     )
